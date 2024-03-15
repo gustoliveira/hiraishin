@@ -1,0 +1,14 @@
+{
+  "name": "hiraishin",
+  "version": "0.0.1",
+  "description": "Fly wherever you want",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo de Oliveira",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
