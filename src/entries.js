@@ -34,7 +34,7 @@ export class Entries {
   }
 
   getPathFromValue(search) {
-    const bestMatch = DiceAlgorithm.bestMatch(search, Object.keys(entries.nodes));
+    const bestMatch = DiceAlgorithm.bestMatch(search, Object.keys(this.nodes));
     const bestMatchKey = bestMatch.bestMatch.target;
     const bestMatchNodes = this.nodes[bestMatchKey];
 
