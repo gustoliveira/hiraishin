@@ -22,7 +22,7 @@ export class Data {
     return jsonData;
   }
 
-  static updateDataFromFile(newEntries) {
+  static updateDataFromFile(newEntry) {
     const data = Data.getDataFromFile();
 
     if ('root' in data && 'nodes' in data) {
@@ -31,7 +31,7 @@ export class Data {
       const entries = new Entries({ root: os.homedir() });
     }
 
-    entries.updatePathNodes('/home/gust/projects/daily_habits');
+    entries.updatePathNodes(newEntry);
     fs.writeFileSync(hiraishinDatabase, JSON.stringify(entries));
     return;
   }
