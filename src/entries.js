@@ -32,19 +32,16 @@ export class Entries {
     this.nodes[key] = [path];
   }
 
-  updatePathNodes(path) {
+  updatePathNodes(path, weight) {
     let key = Node.getKeyFromPath(path);
 
     if (key in this.nodes && path in this.nodes[key]) {
-      return this.nodes[key][path].updateWeight();
+      return this.nodes[key][path].updateWeight(weight);
     }
 
-    if (key in this.nodes && !(path in this.nodes[key])) {
-      return (this.nodes[key][path] = new Node({ path: path }));
-    }
+    if (!(key in this.nodes)) this.nodes[key] = {};
 
-    this.nodes[key] = {};
-    return (this.nodes[key][path] = new Node({ path: path }));
+    return (this.nodes[key][path] = new Node({ path: path, weight: weight }));
   }
 
   getPathFromValue(search) {

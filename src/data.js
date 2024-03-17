@@ -27,7 +27,7 @@ export class Data {
 
     let entries;
     if (data && 'root' in data && 'nodes' in data) {
-      entries = new Entries({ root: data.root, nodes: data.nodes });
+      entries = Entries.populateFromJson(data);
     } else {
       entries = new Entries({ root: homedir() });
     }
