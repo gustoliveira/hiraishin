@@ -49,7 +49,9 @@ if (options.printValues) {
 }
 
 if (options.getPathFromKey) {
-  console.log('getPathFromKey');
+  const data = Data.getDataFromFile();
+  const entries = Entries.populateFromJson(data);
+  console.log(entries.getPathFromValue(options.flyForKey));
 }
 
 if (options.flyForKey) {
