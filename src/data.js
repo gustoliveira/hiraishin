@@ -25,10 +25,11 @@ export class Data {
   static updateDataFromFile(newEntry) {
     const data = Data.getDataFromFile();
 
-    if ('root' in data && 'nodes' in data) {
-      const entries = new Entries({ root: data.root, nodes: data.nodes });
+    let entries;
+    if (data && 'root' in data && 'nodes' in data) {
+      entries = new Entries({ root: data.root, nodes: data.nodes });
     } else {
-      const entries = new Entries({ root: os.homedir() });
+      entries = new Entries({ root: homedir() });
     }
 
     entries.updatePathNodes(newEntry);
