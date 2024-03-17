@@ -7,6 +7,20 @@ export class Entries {
     this.nodes = nodes ?? {};
   }
 
+  static populateFromJson(jsonEntry) {
+    const entries = new Entries({ root: jsonEntry.root });
+
+    Object.values(jsonEntry.nodes).forEach((element) => {
+      Object.values(element).forEach((node) => {
+        const key = node.path;
+        const weight = node.weight;
+        entries.updatePathNodes(key, weight);
+      });
+    });
+
+    return entries;
+  }
+
   addPathToNode(path) {
     let key = Node.getKeyFromPath(path);
 
