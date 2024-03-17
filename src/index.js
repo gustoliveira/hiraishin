@@ -8,15 +8,15 @@ program
   .version('0.0.1')
   .description('Hiraishin - Fly wherever you want!')
   .option('-a, --addPath [path]', 'Add new path')
-  .option('-r, --removePath [path]', 'Remove path')
-  .option('-w, --weightPath [path] [weight]', 'Change the weight of a path')
+  .option('-r, --removePath <path>', 'Remove path')
+  .option('-w, --weightPath <path> <weight>', 'Change the weight of a path')
   .option('-p, --printValues', 'Print all values with weights')
   .option(
-    '-g, --getPathFromKey [key] <position>',
+    '-g, --getPathFromKey <key> [position]',
     'Get the path with the highest incidence from a key'
   )
-  .option('-f, --flyForKey [key]', 'Fly for a path of a key')
-  .option('-fp, --flyForPath [path]', 'Fly for a path of a path')
+  .option('-f, --flyForKey <key>', 'Fly for a path of a key')
+  .option('-fp, --flyForPath <path>', 'Fly for a path of a path')
   .parse(process.argv);
 
 const options = program.opts();
