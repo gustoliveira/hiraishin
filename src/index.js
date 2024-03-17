@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { Command } from 'commander';
 import { Entries } from './entries.js';
 import { Data } from './data.js';
@@ -15,7 +16,7 @@ program
     '-g, --getPathFromKey <key> [position]',
     'Get the path with the highest incidence from a key'
   )
-  .option('-f, --flyForKey <key>', 'Fly for a path of a key')
+  .option('-f, --flyForKey <key> [position]', 'Fly for a path of a key')
   .option('-fp, --flyForPath <path>', 'Fly for a path of a path')
   .parse(process.argv);
 
@@ -52,9 +53,24 @@ if (options.getPathFromKey) {
 }
 
 if (options.flyForKey) {
-  console.log('flyForKey');
+  const data = Data.getDataFromFile();
+  const entries = Entries.populateFromJson(data);
+  const path = entries.getPathFromValue(options.flyForKey);
+
+  if (fs.existsSync(path)) {
+    console.log(`cd ${path}`);
+    Data.updateDataFromFile(path, data);
+  } else {
+    console.error(`The path ${path} does not exist.`);
+  }
 }
 
 if (options.flyForPath) {
-  console.log('flyForPath');
+  const path = options.flyForPath;
+  if (fs.existsSync(path)) {
+    console.log(`cd ${path}`);
+    Data.updateDataFromFile(path, data);
+  } else {
+    console.error(`The path ${path} does not exist.`);
+  }
 }
