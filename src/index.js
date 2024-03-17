@@ -60,7 +60,8 @@ if (options.flyForKey) {
   const path = entries.getPathFromValue(options.flyForKey);
 
   if (fs.existsSync(path)) {
-    console.log(`cd ${path}`);
+    // console.log(`cd ${path}`);
+    console.log(path);
     Data.updateDataFromFile(path, data);
   } else {
     console.error(`The path ${path} does not exist.`);
