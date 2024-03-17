@@ -22,8 +22,8 @@ export class Data {
     return jsonData;
   }
 
-  static updateDataFromFile(newEntry) {
-    const data = Data.getDataFromFile();
+  static updateDataFromFile(newEntry, oldData) {
+    const data = oldData ?? Data.getDataFromFile();
 
     let entries;
     if (data && 'root' in data && 'nodes' in data) {
