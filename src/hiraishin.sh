@@ -28,6 +28,10 @@ changeDirectory () {
         shift
         node $HIRAISHIN_SRC/index.js -fp "$@" 
 
+    elif [[ $1 == "-pp" ]]; then
+        shift
+        node $HIRAISHIN_SRC/index.js -pp 
+
     else
         path="$(node $HIRAISHIN_SRC/index.js -f "$@")"
         cd "${path}"

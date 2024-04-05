@@ -46,16 +46,16 @@ export class Entries {
     return (this.nodes[key][path] = new Node({ path: path, weight: weight }));
   }
 
-  removePathFromNodes(path) {
+  removePathFromNodes(path, silent) {
     let key = Node.getKeyFromPath(path);
 
     if (key in this.nodes && path in this.nodes[key]) {
       delete this.nodes[key][path];
-      console.log(`Path '${path}' removed!`)
-      return
+      if (!silent) console.log(`Path '${path}' removed!`);
+      return;
     }
 
-    console.log(`The path '${path}' was not in database.`)
+    if (!silent) console.log(`The path '${path}' was not in database.`);
   }
 
   getPathFromValue(search) {
@@ -127,5 +127,19 @@ export class Entries {
     }
 
     console.error(`The path ${path} does not exist.`);
+  }
+
+  static purgePaths() {
+    const entries = Entries.getEntries();
+    const nodes = entries.nodes;
+
+    Object.values(nodes).forEach((entry) => {
+      Object.keys(entry).forEach((path) => {
+        if (existsSync(path)) return;
+        entries.removePathFromNodes(path, true);
+      });
+    });
+
+    return entries;
   }
 }

@@ -17,6 +17,7 @@ program
   )
   .option('-f, --flyForKey <key> [position]', 'Fly for a path of a key')
   .option('-fp, --flyForPath <path>', 'Fly for a path of a path')
+  .option('-pp, --purge', 'Clear all paths that no longer exist')
   .parse(process.argv);
 
 const options = program.opts();
@@ -69,6 +70,11 @@ if (options.flyForKey) {
   };
 
   Entries.checkIfPathExists(path, onSuccess);
+}
+
+if (options.purge) {
+  const newEntries = Entries.purgePaths();
+  Data.writeDataFromEntries(newEntries);
 }
 
 if (options.flyForPath) {

@@ -41,4 +41,10 @@ export class Data {
     writeFileSync(hiraishinDatabase, JSON.stringify(entries));
     return;
   }
+
+  static writeDataFromEntries(entries) {
+
+    writeFileSync(hiraishinDatabase, JSON.stringify(entries));
+    return;
+  }
 }
