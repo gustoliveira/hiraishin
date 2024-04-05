@@ -43,24 +43,20 @@ if (options.weightPath) {
 }
 
 if (options.printValues) {
-  const data = Data.getDataFromFile();
-  const entries = Entries.populateFromJson(data);
+  const entries = Entries.getEntries();
   entries.printAllNodes();
 }
 
 if (options.getPathFromKey) {
-  const data = Data.getDataFromFile();
-  const entries = Entries.populateFromJson(data);
+  const entries = Entries.getEntries();
   console.log(entries.getPathFromValue(options.flyForKey));
 }
 
 if (options.flyForKey) {
-  const data = Data.getDataFromFile();
-  const entries = Entries.populateFromJson(data);
+  const entries = Entries.getEntries();
   const path = entries.getPathFromValue(options.flyForKey);
 
   if (fs.existsSync(path)) {
-    // console.log(`cd ${path}`);
     console.log(path);
     Data.updateDataFromFile(path, data);
   } else {

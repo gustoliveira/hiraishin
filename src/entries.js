@@ -1,4 +1,5 @@
 import { Node } from './node.js';
+import { Data } from './data.js';
 import { DiceAlgorithm } from './utils/string_similarity.js';
 
 export class Entries {
@@ -94,5 +95,10 @@ export class Entries {
       return 0;
     });
     return items;
+  }
+
+  static getEntries() {
+    const data = Data.getDataFromFile();
+    return Entries.populateFromJson(data);
   }
 }
