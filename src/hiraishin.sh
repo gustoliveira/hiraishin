@@ -8,9 +8,8 @@ changeDirectory () {
         node $HIRAISHIN_SRC/index.js -a "$@" 
 
     elif [[ $1 == "-r" ]]; then
-        # shift
-        # node $HIRAISHIN_SRC/index.js -r "$@" 
-        echo Not implemented - WIP
+        shift
+        node $HIRAISHIN_SRC/index.js -r "$@" 
 
     elif [[ $1 == "-w" ]]; then
         # shift

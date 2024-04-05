@@ -46,6 +46,18 @@ export class Entries {
     return (this.nodes[key][path] = new Node({ path: path, weight: weight }));
   }
 
+  removePathFromNodes(path) {
+    let key = Node.getKeyFromPath(path);
+
+    if (key in this.nodes && path in this.nodes[key]) {
+      delete this.nodes[key][path];
+      console.log(`Path '${path}' removed!`)
+      return
+    }
+
+    console.log(`The path '${path}' was not in database.`)
+  }
+
   getPathFromValue(search) {
     const bestMatch = DiceAlgorithm.bestMatch(search, Object.keys(this.nodes));
     const bestMatchKey = bestMatch.bestMatch.target;

@@ -22,7 +22,7 @@ export class Data {
     return jsonData;
   }
 
-  static updateDataFromFile(newEntry, oldData) {
+  static updateDataFromFile({ path, oldData, toRemovePath = false }) {
     const data = oldData ?? Data.getDataFromFile();
 
     let entries;
@@ -32,7 +32,12 @@ export class Data {
       entries = new Entries({ root: homedir() });
     }
 
-    entries.updatePathNodes(newEntry);
+    if (toRemovePath) {
+      entries.removePathFromNodes(path);
+    } else {
+      entries.updatePathNodes(path);
+    }
+
     writeFileSync(hiraishinDatabase, JSON.stringify(entries));
     return;
   }
