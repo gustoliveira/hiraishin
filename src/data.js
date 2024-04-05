@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 import { homedir } from 'os';
 import { Entries } from './entries.js';
 
@@ -10,11 +10,11 @@ export class Data {
   static getDataFromFile() {
     let jsonData;
     try {
-      const jsonString = fs.readFileSync(hiraishinDatabase, 'utf8');
+      const jsonString = readFileSync(hiraishinDatabase, 'utf8');
       jsonData = JSON.parse(jsonString);
     } catch (error) {
       if (error.code == 'ENOENT') {
-        fs.writeFileSync(hiraishinDatabase, JSON.stringify({}));
+        writeFileSync(hiraishinDatabase, JSON.stringify({}));
         return;
       }
       console.error(error);
@@ -33,7 +33,7 @@ export class Data {
     }
 
     entries.updatePathNodes(newEntry);
-    fs.writeFileSync(hiraishinDatabase, JSON.stringify(entries));
+    writeFileSync(hiraishinDatabase, JSON.stringify(entries));
     return;
   }
 }

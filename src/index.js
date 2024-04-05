@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { Command } from 'commander';
 import { Entries } from './entries.js';
 import { Data } from './data.js';

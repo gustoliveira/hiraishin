@@ -1,4 +1,4 @@
-import { existsSync }  from 'fs';
+import { existsSync } from 'fs';
 import { Node } from './node.js';
 import { Data } from './data.js';
 import { DiceAlgorithm } from './utils/string_similarity.js';
