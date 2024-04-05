@@ -1,3 +1,4 @@
+import { existsSync }  from 'fs';
 import { Node } from './node.js';
 import { Data } from './data.js';
 import { DiceAlgorithm } from './utils/string_similarity.js';
@@ -100,5 +101,19 @@ export class Entries {
   static getEntries() {
     const data = Data.getDataFromFile();
     return Entries.populateFromJson(data);
+  }
+
+  static checkIfPathExists(path, onSuccess, onError) {
+    if (existsSync(path)) {
+      onSuccess();
+      return;
+    }
+
+    if (onError && typeof onError === 'function') {
+      onError();
+      return;
+    }
+
+    console.error(`The path ${path} does not exist.`);
   }
 }

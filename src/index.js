@@ -53,23 +53,26 @@ if (options.getPathFromKey) {
 }
 
 if (options.flyForKey) {
-  const entries = Entries.getEntries();
+  const data = Data.getDataFromFile();
+  const entries = Entries.populateFromJson(data);
   const path = entries.getPathFromValue(options.flyForKey);
 
-  if (fs.existsSync(path)) {
+  const onSuccess = () => {
     console.log(path);
     Data.updateDataFromFile(path, data);
-  } else {
-    console.error(`The path ${path} does not exist.`);
-  }
+  };
+
+  Entries.checkIfPathExists(path, onSuccess);
 }
 
 if (options.flyForPath) {
+  const data = Data.getDataFromFile();
   const path = options.flyForPath;
-  if (fs.existsSync(path)) {
-    console.log(`cd ${path}`);
+
+  const onSuccess = () => {
+    console.log(path);
     Data.updateDataFromFile(path, data);
-  } else {
-    console.error(`The path ${path} does not exist.`);
-  }
+  };
+
+  Entries.checkIfPathExists(path, onSuccess);
 }
