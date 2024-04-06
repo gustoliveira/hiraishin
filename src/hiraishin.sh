@@ -9,6 +9,10 @@ changeDirectory () {
 
     elif [[ $1 == "-r" ]]; then
         shift
+        node $HIRAISHIN_SRC/index.js -ar 
+
+    elif [[ $1 == "-r" ]]; then
+        shift
         node $HIRAISHIN_SRC/index.js -r "$@" 
 
     elif [[ $1 == "-w" ]]; then
